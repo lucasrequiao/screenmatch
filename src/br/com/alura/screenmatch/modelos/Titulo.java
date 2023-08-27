@@ -1,6 +1,8 @@
 package br.com.alura.screenmatch.modelos;
 
-public class Titulo {
+import br.com.alura.screenmatch.calculos.Classificavel;
+
+public class Titulo implements Classificavel{
     private String nome;
     private int anoLancamento;
     private boolean incluidoNoPlano;
@@ -45,7 +47,7 @@ public class Titulo {
     }
 
     public void exibeFichaTecnica(){
-        System.out.println("Nome do filme: " + nome);
+        System.out.println("Nome do título: " + nome);
         System.out.println("Ano de lançamento: " + anoLancamento);
     }
 
@@ -56,5 +58,10 @@ public class Titulo {
 
     public double exibeMedia(){
         return somaDasAvaliacoes / totalAvaliacoes;
+    }
+
+    @Override
+    public int getClassificacao() {
+        return (int) exibeMedia() / 2;
     }
 }
