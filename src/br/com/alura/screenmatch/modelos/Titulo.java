@@ -10,6 +10,11 @@ public class Titulo implements Classificavel{
     private int totalAvaliacoes;
     private int duracaoMinutos;
 
+    public Titulo(String nome, int anoLancamento) {
+        this.nome = nome;
+        this.anoLancamento = anoLancamento;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -30,13 +35,13 @@ public class Titulo implements Classificavel{
         return totalAvaliacoes;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+//    public void setNome(String nome) {
+//        this.nome = nome;
+//    }
 
-    public void setAnoLancamento(int anoLancamento) {
-        this.anoLancamento = anoLancamento;
-    }
+//    public void setAnoLancamento(int anoLancamento) {
+//        this.anoLancamento = anoLancamento;
+//    }
 
     public void setIncluidoNoPlano(boolean incluidoNoPlano) {
         this.incluidoNoPlano = incluidoNoPlano;
@@ -64,4 +69,10 @@ public class Titulo implements Classificavel{
     public int getClassificacao() {
         return (int) exibeMedia() / 2;
     }
+
+    @Override
+    public String toString() {
+        return "Título: " + this.getNome();
+    }
+
 }
