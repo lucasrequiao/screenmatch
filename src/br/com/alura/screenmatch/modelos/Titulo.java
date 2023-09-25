@@ -1,9 +1,12 @@
 package br.com.alura.screenmatch.modelos;
 
 import br.com.alura.screenmatch.calculos.Classificavel;
+import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Classificavel{
+    @SerializedName("Title")
     private String nome;
+    @SerializedName("Year")
     private int anoLancamento;
     private boolean incluidoNoPlano;
     private double somaDasAvaliacoes;
@@ -13,6 +16,12 @@ public class Titulo implements Classificavel{
     public Titulo(String nome, int anoLancamento) {
         this.nome = nome;
         this.anoLancamento = anoLancamento;
+    }
+
+    public Titulo(TituloOmdb tituloOmdb){
+        this.nome = tituloOmdb.title();
+        this.anoLancamento = Integer.valueOf(tituloOmdb.year());
+        this.duracaoMinutos = Integer.valueOf(tituloOmdb.runtime().substring(0, 2));
     }
 
     public String getNome() {
@@ -72,7 +81,8 @@ public class Titulo implements Classificavel{
 
     @Override
     public String toString() {
-        return "Título: " + this.getNome();
+        return  "nome='" + nome + '\'' +
+                ", anoLancamento=" + anoLancamento +
+                ", duração= " + duracaoMinutos + " min";
     }
-
 }
