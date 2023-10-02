@@ -1,6 +1,7 @@
 package br.com.alura.screenmatch.modelos;
 
 import br.com.alura.screenmatch.calculos.Classificavel;
+import br.com.alura.screenmatch.excecao.ErroDeConversaoDeAnoException;
 import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Classificavel{
@@ -18,10 +19,16 @@ public class Titulo implements Classificavel{
         this.anoLancamento = anoLancamento;
     }
 
+
     public Titulo(TituloOmdb tituloOmdb){
         this.nome = tituloOmdb.title();
+
+        if(tituloOmdb.year().length() > 4){
+            throw new ErroDeConversaoDeAnoException("Ano com mais de 4 caracteres!");
+        }
+
         this.anoLancamento = Integer.valueOf(tituloOmdb.year());
-        this.duracaoMinutos = Integer.valueOf(tituloOmdb.runtime().substring(0, 2));
+        this.duracaoMinutos = Integer.valueOf(tituloOmdb.runtime().substring(0, 3));
     }
 
     public String getNome() {
